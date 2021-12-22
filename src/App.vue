@@ -4,6 +4,9 @@
     <Header />
     <main>
 
+      <MainContent />
+
+      
     </main>
 
   </div>
@@ -12,11 +15,13 @@
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
 import Header from "./components/Header.vue"
+import MainContent from "./components/MainContent.vue"
 
 export default {
   name: "App",
   components: {
       Header,
+      MainContent
   },
 };
 </script>
@@ -26,6 +31,8 @@ export default {
 
   main {
     background-color: #1e2d3b;
+    min-height: calc( 100vh - 50px );
+    padding: 50px 0;
   }
 
 </style>
