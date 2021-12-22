@@ -1,31 +1,36 @@
 <template>
     <div class="container">
         <div class="wrapper">
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
-            <SingleCard />
+            <SingleCard v-for="(singleAlbum, index) in cardObject" :key="index" :album="singleAlbum" />
 
         </div>
     </div>
 </template>
 
 <script>
-import SingleCard from "./SingleCard.vue"
+
+import axios from 'axios';
+import SingleCard from "./SingleCard.vue";
 
 export default {
     name: 'MainContent',
     components: {
-      SingleCard,
-  },
+        SingleCard,
+    },
+
+    data: function() {
+        return {
+            cardObject: [],
+        };
+    },
+
+    created: function() {
+        axios.get('https://flynn.boolean.careers/exercises/api/array/music')
+        .then((response) => {
+            this.cardObject = response.data.response;
+            console.log('cardObject', this.cardObject) // DA RIMUOVERE     DA RIMUOVERE     DA RIMUOVERE
+        });
+    }
 }
 </script>
 

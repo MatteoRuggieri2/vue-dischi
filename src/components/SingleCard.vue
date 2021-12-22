@@ -1,14 +1,15 @@
 <template>
     <div class="single-album-container">
-        <img class="album-image" src="https://www.onstageweb.com/wp-content/uploads/2018/09/bon-jovi-new-jersey.jpg" alt="Album">
-        <h2 class="album-title">title</h2>
-        <h3 class="album-author">author</h3>
+        <img class="album-image" :src="album.poster" :alt="album.title">
+        <h2 class="album-title">{{ album.title }}</h2>
+        <h3 class="album-author">{{ album.author }}</h3>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'SingleCard'
+    name: 'SingleCard',
+    props: ['album']
 }
 </script>
 
