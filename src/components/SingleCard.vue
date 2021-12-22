@@ -9,7 +9,9 @@
 <script>
 export default {
     name: 'SingleCard',
-    props: ['album']
+    props: {
+        album: Object
+    }
 }
 </script>
 
@@ -21,6 +23,8 @@ export default {
         padding: 20px;
         text-align: center;
         background-color: #2e3a46;
+        cursor: pointer;
+        
 
         .album-image {
             margin-bottom: 20px;
@@ -30,12 +34,13 @@ export default {
             color: white;
             text-transform: uppercase;
             margin-bottom: 20px;
-            font-size: 25px;
+            font-size: 23px;
         }
 
         .album-author {
             color: gray;
             font-size: 18px;
+            font-weight: lighter;
         }
     }
 

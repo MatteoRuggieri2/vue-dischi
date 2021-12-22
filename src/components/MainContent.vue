@@ -38,5 +38,6 @@ export default {
     .wrapper {
         display: flex;
         flex-wrap: wrap;
+        font-family: Arial, Helvetica, sans-serif;
     }
 </style>
