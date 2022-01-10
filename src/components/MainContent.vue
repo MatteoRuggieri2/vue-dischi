@@ -1,9 +1,9 @@
 <template>
     <div class="container">
-        <SearchFilter />
+        <SearchFilter @selectedFilter="filterForResearch" />
 
         <div class="wrapper">
-            <SingleCard v-for="(singleAlbum, index) in cardObject" :key="index" :album="singleAlbum" />
+            <SingleCard v-for="(singleAlbum, index) in filteredResearch" :key="index" :album="singleAlbum" />
 
         </div>
     </div>
@@ -25,7 +25,28 @@ export default {
     data: function() {
         return {
             cardObject: [],
+            selectedGenreFilter: '',
         };
+    },
+
+    methods: {
+        filterForResearch: function(filter) {
+            this.selectedGenreFilter = filter;
+        }
+    },
+
+    computed: {
+        filteredResearch() {
+            if( this.selectedGenreFilter === '' ) {
+                return this.cardObject;
+            }
+
+            const filteredAlbums = this.cardObject.filter((element) => {
+                return element.genre.toLowerCase().includes(this.selectedGenreFilter.toLowerCase())
+            });
+
+            return filteredAlbums;
+        }
     },
 
     created: function() {

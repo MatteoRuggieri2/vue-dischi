@@ -4,10 +4,12 @@
         <!-- Genre-search -->
         <div class="genre-search">
 
-            <select v-model="genreFilter" name="" id="">
+            <select @change="$emit('selectedFilter', genreFilter)" v-model="genreFilter" name="" id="">
                 <option value="">All</option>
                 <option value="rock">rock</option>
+                <option value="pop">pop</option>
                 <option value="jazz">jazz</option>
+                <option value="metal">metal</option>
             </select>
 
         </div>
