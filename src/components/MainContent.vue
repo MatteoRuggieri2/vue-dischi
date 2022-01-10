@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <SearchFilter @selectedGenreFilter="filterForGenreResearch" @selectedAuthorFilter="filterForAuthorResearch" :authors="authorsArray" />
+        <SearchFilter @selectedGenreFilter="filterForGenreResearch" @selectedAuthorFilter="filterForAuthorResearch" :authors="authorsArray" :genres="genresArray" />
 
         <div class="wrapper">
             <SingleCard v-for="(singleAlbum, index) in filteredResearch" :key="index" :album="singleAlbum" />
@@ -27,7 +27,8 @@ export default {
             cardObject: [],
             selectedGenreFilter: '',
             selectedAuthorFilter: '',
-            authorsArray: []
+            authorsArray: [],
+            genresArray: []
         };
     },
 
@@ -60,10 +61,17 @@ export default {
         .then((response) => {
             this.cardObject = response.data.response;
             
-            // Questo seve per non inserire più volte lo stesso autore
+            // Questo serve per non inserire più volte lo stesso autore
             this.cardObject.forEach(element => {
                 if( !this.authorsArray.includes(element.author) ) {
                     this.authorsArray.push(element.author);
+                }
+            });
+
+            // Questo serve per non inserire più volte lo stesso genere
+            this.cardObject.forEach(element => {
+                if( !this.genresArray.includes(element.genre) ) {
+                    this.genresArray.push(element.genre);
                 }
             });
 

@@ -6,10 +6,7 @@
 
             <select @change="$emit('selectedGenreFilter', genreFilter)" v-model="genreFilter" name="genre-select" id="genre-select">
                 <option value="">All</option>
-                <option value="rock">Rock</option>
-                <option value="pop">Pop</option>
-                <option value="jazz">Jazz</option>
-                <option value="metal">Metal</option>
+                <option v-for="(element, index) in genres" :key="index" :value="element">{{ element }}</option>
             </select>
 
         </div>
@@ -19,10 +16,7 @@
 
             <select @change="$emit('selectedAuthorFilter', authorFilter)" v-model="authorFilter" name="author-select" id="author-select">
                 <option value="">All</option>
-
                 <option v-for="(element, index) in authors" :key="index" :value="element">{{ element }}</option>
-
-
             </select>
 
         </div>
@@ -32,7 +26,7 @@
 <script>
 export default {
     name: 'SearchFilter',
-    props: ["authors"],
+    props: ["authors", "genres"],
     data: function() {
         return {
             genreFilter: '',
