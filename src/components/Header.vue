@@ -13,8 +13,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../style/variables.scss';
     header {
-        background-color: #2e3a46;
+        background-color: $primary_color;
         height: 50px;
         display: flex;
         align-items: center;

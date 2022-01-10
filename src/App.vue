@@ -26,9 +26,10 @@ export default {
 
 <style lang="scss">
 @import './style/general.scss';
+@import './style/variables.scss';
 
   main {
-    background-color: #1e2d3b;
+    background-color: $secondary_color;
     min-height: calc( 100vh - 50px );
     padding: 50px 0;
   }

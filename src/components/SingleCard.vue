@@ -16,13 +16,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../style/variables.scss';
     
     .single-album-container {
         width: calc( (100% / 5) - 40px );
         margin: 0 20px 20px;
         padding: 20px;
         text-align: center;
-        background-color: #2e3a46;
+        background-color: $primary_color;
         cursor: pointer;
         
 
@@ -31,15 +32,17 @@ export default {
         }
 
         .album-title {
-            color: white;
+            color: $primary_text_color;
             text-transform: uppercase;
             margin-bottom: 20px;
-            font-size: 23px;
+            // font-size: 23px;
+            font-size: 1.2vw;
         }
 
         .album-author {
-            color: gray;
-            font-size: 18px;
+            color: $secondary_text_color;
+            // font-size: 18px;
+            font-size: 0.9vw;
             font-weight: lighter;
         }
     }
