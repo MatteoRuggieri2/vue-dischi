@@ -19,16 +19,9 @@
 
             <select @change="$emit('selectedAuthorFilter', authorFilter)" v-model="authorFilter" name="author-select" id="author-select">
                 <option value="">All</option>
-                <option value="Bon Jovi">Bon Jovi</option>
-                <option value="Dave Weckl">Dave Weckl</option>
-                <option value="Deep Purple">Deep Purple</option>
-                <option value="Eric Clapton">Eric Clapton</option>
-                <option value="Iron Maiden">Iron Maiden</option>
-                <option value="Metallica">Metallica</option>
-                <option value="Michael Jacjson">Michael Jacjson</option>
-                <option value="Queen">Queen</option>
-                <option value="Steve Gadd Band">Steve Gadd Band</option>
-                <option value="Sting">Sting</option>
+
+                <option v-for="(element, index) in authors" :key="index" :value="element">{{ element }}</option>
+
 
             </select>
 
@@ -39,6 +32,7 @@
 <script>
 export default {
     name: 'SearchFilter',
+    props: ["authors"],
     data: function() {
         return {
             genreFilter: '',

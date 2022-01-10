@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <SearchFilter @selectedGenreFilter="filterForGenreResearch" @selectedAuthorFilter="filterForAuthorResearch" />
+        <SearchFilter @selectedGenreFilter="filterForGenreResearch" @selectedAuthorFilter="filterForAuthorResearch" :authors="authorsArray" />
 
         <div class="wrapper">
             <SingleCard v-for="(singleAlbum, index) in filteredResearch" :key="index" :album="singleAlbum" />
@@ -26,7 +26,8 @@ export default {
         return {
             cardObject: [],
             selectedGenreFilter: '',
-            selectedAuthorFilter: ''
+            selectedAuthorFilter: '',
+            authorsArray: []
         };
     },
 
@@ -58,6 +59,14 @@ export default {
         axios.get('https://flynn.boolean.careers/exercises/api/array/music')
         .then((response) => {
             this.cardObject = response.data.response;
+            
+            // Questo seve per non inserire più volte lo stesso autore
+            this.cardObject.forEach(element => {
+                if( !this.authorsArray.includes(element.author) ) {
+                    this.authorsArray.push(element.author);
+                }
+            });
+
         });
     }
 }
