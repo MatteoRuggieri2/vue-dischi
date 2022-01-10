@@ -1,5 +1,7 @@
 <template>
     <div class="container">
+        <SearchFilter />
+
         <div class="wrapper">
             <SingleCard v-for="(singleAlbum, index) in cardObject" :key="index" :album="singleAlbum" />
 
@@ -10,12 +12,14 @@
 <script>
 
 import axios from 'axios';
+import SearchFilter from "./SearchFilter.vue";
 import SingleCard from "./SingleCard.vue";
 
 export default {
     name: 'MainContent',
     components: {
         SingleCard,
+        SearchFilter
     },
 
     data: function() {
@@ -28,7 +32,6 @@ export default {
         axios.get('https://flynn.boolean.careers/exercises/api/array/music')
         .then((response) => {
             this.cardObject = response.data.response;
-            console.log('cardObject', this.cardObject) // DA RIMUOVERE     DA RIMUOVERE     DA RIMUOVERE
         });
     }
 }
