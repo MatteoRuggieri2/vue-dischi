@@ -5,6 +5,8 @@
         <div v-if="(!apiLoading)" class="wrapper">
             <SingleCard v-for="(singleAlbum, index) in filteredResearch" :key="index" :album="singleAlbum" />
 
+            <!-- Aggiungere v-if e v-else per aggiungere questa ricerca non ha avuto risultati, prova a cambiare filtri -->
+
         </div>
 
         <div v-else>
@@ -68,15 +70,13 @@ export default {
         .then((response) => {
             this.cardObject = response.data.response;
             
-            // Questo serve per non inserire più volte lo stesso autore
-            this.cardObject.forEach(element => {
+            // Questo serve per non inserire più volte lo stesso autore e
+            // per non inserire più volte lo stesso genere
+            this.cardObject.forEach((element) => {
                 if( !this.authorsArray.includes(element.author) ) {
                     this.authorsArray.push(element.author);
                 }
-            });
 
-            // Questo serve per non inserire più volte lo stesso genere
-            this.cardObject.forEach(element => {
                 if( !this.genresArray.includes(element.genre) ) {
                     this.genresArray.push(element.genre);
                 }
