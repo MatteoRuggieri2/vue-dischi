@@ -2,9 +2,13 @@
     <div class="container">
         <SearchFilter @selectedGenreFilter="filterForGenreResearch" @selectedAuthorFilter="filterForAuthorResearch" :authors="authorsArray" :genres="genresArray" />
 
-        <div class="wrapper">
+        <div v-if="(!apiLoading)" class="wrapper">
             <SingleCard v-for="(singleAlbum, index) in filteredResearch" :key="index" :album="singleAlbum" />
 
+        </div>
+
+        <div v-else>
+            <Loading />
         </div>
     </div>
 </template>
@@ -14,12 +18,14 @@
 import axios from 'axios';
 import SearchFilter from "./SearchFilter.vue";
 import SingleCard from "./SingleCard.vue";
+import Loading from "./Loading.vue";
 
 export default {
     name: 'MainContent',
     components: {
         SingleCard,
-        SearchFilter
+        SearchFilter,
+        Loading
     },
 
     data: function() {
@@ -28,7 +34,8 @@ export default {
             selectedGenreFilter: '',
             selectedAuthorFilter: '',
             authorsArray: [],
-            genresArray: []
+            genresArray: [],
+            apiLoading: true
         };
     },
 
@@ -74,6 +81,8 @@ export default {
                     this.genresArray.push(element.genre);
                 }
             });
+
+            this.apiLoading = false;
 
         });
     }
