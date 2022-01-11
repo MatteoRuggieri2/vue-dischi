@@ -2,10 +2,15 @@
     <div class="container">
         <SearchFilter @selectedGenreFilter="filterForGenreResearch" @selectedAuthorFilter="filterForAuthorResearch" :authors="authorsArray" :genres="genresArray" />
 
-        <div v-if="(!apiLoading)" class="wrapper">
-            <SingleCard v-for="(singleAlbum, index) in filteredResearch" :key="index" :album="singleAlbum" />
+        <div v-if="(!apiLoading)">
 
-            <!-- Aggiungere v-if e v-else per aggiungere questa ricerca non ha avuto risultati, prova a cambiare filtri -->
+            <div v-if="(filteredResearch.length > 0)" class="wrapper">
+                <SingleCard v-for="(singleAlbum, index) in filteredResearch" :key="index" :album="singleAlbum" />
+             </div>
+
+            <div v-else-if="(filteredResearch.length === 0)">
+                <span class="no-result-text">La ricerca non ha prodotto risultati. Riprova modificando i filtri.</span>
+            </div>
 
         </div>
 
@@ -90,9 +95,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../style/variables.scss';
+
     .wrapper {
         display: flex;
         flex-wrap: wrap;
-        font-family: Arial, Helvetica, sans-serif;
+        font-family: $primary_text_font;
+    }
+
+    .no-result-text {
+        display: inline-block;
+        margin: 40px 0;
+        color: $primary_text_color;
+        font-family: $primary_text_font;
+        font-size: 30px;
     }
 </style>

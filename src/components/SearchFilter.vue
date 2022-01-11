@@ -47,7 +47,7 @@ export default {
 
         label {
             margin-right: 10px;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: $primary_text_font;
             font-size: 14px;
             color: $primary_text_color;
         }

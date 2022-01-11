@@ -17,7 +17,7 @@ export default {
 
         .loading-text {
             color: $primary_text_color;
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: $primary_text_font;
             font-size: 18px;
         }
     }
