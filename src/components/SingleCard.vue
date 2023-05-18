@@ -1,6 +1,11 @@
 <template>
     <div class="single-album-container">
-        <img class="album-image" :src="album.poster" :alt="album.title">
+
+        <!-- Se il poster non è raggiungibile renderizzo un'immagine alternativa -->
+        <object class="album-image" :data="album.poster">
+            <img class="album-image" src="../assets/img/poster-not-found.png" />
+        </object>
+        
         <h2 class="album-title">{{ album.title }}</h2>
         <h3 class="album-author">{{ album.author }}</h3>
     </div>
@@ -29,6 +34,7 @@ export default {
 
         .album-image {
             margin-bottom: 20px;
+            max-width: 100%;
         }
 
         .album-title {
